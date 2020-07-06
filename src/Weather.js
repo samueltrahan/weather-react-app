@@ -3,7 +3,7 @@ import React from 'react'
 export default function Weather({weather, description, temperature}) {
     return (
         <div>
-            <h1>Todays Weather</h1>
+            <h1>Today's Weather</h1>
             {weather}
             <h3>Details </h3>
             {description}
