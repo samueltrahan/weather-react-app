@@ -21,16 +21,14 @@ function App() {
         `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}&units=imperial`,
       );
       const data = await response.json();
+
       setWeatherData(data);
     };
     getWeather();
 
   }, [query, API_KEY]);
 
-  useEffect(() => {
-    sendMessage('hello sam').then(() => console.log('Hello Sam'))
 
-  }, [])
 
 
   function getSearch(event) {
@@ -69,6 +67,7 @@ function App() {
       key = {
         weatherData.id
       }
+      name={weatherData.name}
       weather = {
         weatherData.weather[0].main
       }
