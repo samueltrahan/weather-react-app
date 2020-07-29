@@ -21,7 +21,7 @@ function App() {
         `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${API_KEY}&units=imperial`,
       );
       const data = await response.json();
-
+      console.log(data)
       setWeatherData(data);
     };
     getWeather();
@@ -67,6 +67,7 @@ function App() {
       key = {
         weatherData.id
       }
+      img={weatherData.weather[0].icon}
       name={weatherData.name}
       weather = {
         weatherData.weather[0].main
@@ -77,6 +78,7 @@ function App() {
       temperature = {
         weatherData.main.temp
       }
+      feelsLike={weatherData.main.feels_like}
       /> <
       /div> : <Loader / >
     } <
