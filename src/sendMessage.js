@@ -1,16 +1,36 @@
-import Twilio from 'twilio'
+import React, { Component } from 'react'
 
+export default class SendMessage extends Component {
 
-const twilioClient = new Twilio(
-  process.env.REACT_APP_TWILIO_ACCOUNT_SID,
-  process.env.REACT_APP_TWILIO_AUTH_TOKEN,
-);
+  state = {
+    text: {
+      recipient: '',
+      textmessage: ''
+    }
+  }
+  
+  sendText = () => {
+    const { text } = this.state;
+    //pass text message GET variables via query string
+    fetch(`http://127.0.0.1:4000/send-text?recipient=${text.recipient}&textmessage=${text.textmessage}`)
+    .catch(err => console.error(err))
+  }
 
-const sendMessage = message =>
-  twilioClient.messages.create({
-    body: message,
-    to: process.env.REACT_APP_MY_PHONE_NUMBER,
-    from: process.env.REACT_APP_TWILIO_PHONE_NUMBER,
-  });
-
-export default sendMessage;
+  render() {
+    return (
+      <div>
+        <div style={{ marginTop: 10 }} >
+          <h2> Send Text Message </h2>
+          <label> Your Phone Number </label>
+          <br />
+          <input value={this.state.text.recipient}
+            onChange={e => this.setState({ text: { ...this.state.text, recipient: e.target.value } })} />
+          <div/>
+          <br />
+          <div/>
+          <button onClick={this.sendText}> Send Text </button>
+        </div>
+      </div>
+    )
+  }
+}

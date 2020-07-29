@@ -5,7 +5,8 @@ import React, {
 import './App.css';
 import Weather from './Weather';
 import Loader from './Loader';
-import sendMessage from './sendMessage';
+import SendMessage from './sendMessage'
+
 
 
 function App() {
@@ -28,9 +29,6 @@ function App() {
 
   }, [query, API_KEY]);
 
-
-
-
   function getSearch(event) {
     event.preventDefault();
     setQuery(search);
@@ -41,48 +39,30 @@ function App() {
     setSearch(event.target.value);
   }
 
-  return ( <
-    div className = "App" >
-    <
-    h1 > Weather < /h1> <
-    form onSubmit = {
-      getSearch
-    } >
-    <
-    input type = "text"
-    value = {
-      search
-    }
-    onChange = {
-      updateSearch
-    }
-    /> <
-    button type = "submit" > Search < /button> <
-    /form> {
+  
+
+  return ( 
+    <div className = "App" >
+    <h1> Weather </h1> 
+    <form onSubmit = {getSearch} >
+    <input type = "text" value = {search} onChange = {updateSearch}/> 
+    <button type = "submit" >Search</button> 
+    </form> 
+    <SendMessage />
+    {
       weatherData ?
-        <
-        div >
-        <
-        Weather
-      key = {
-        weatherData.id
-      }
-      img={weatherData.weather[0].icon}
-      name={weatherData.name}
-      weather = {
-        weatherData.weather[0].main
-      }
-      description = {
-        weatherData.weather[0].description
-      }
-      temperature = {
-        weatherData.main.temp
-      }
-      feelsLike={weatherData.main.feels_like}
-      /> <
-      /div> : <Loader / >
-    } <
-    /div>
+        <div>
+        <Weather
+        key = {weatherData.id}
+        img={weatherData.weather[0].icon}
+        name={weatherData.name}
+        weather = {weatherData.weather[0].main}
+        description = {weatherData.weather[0].description}
+        temperature = {weatherData.main.temp}
+        feelsLike={weatherData.main.feels_like}/> 
+        </div> : <Loader / >
+    } 
+    </div>
   );
 }
 
