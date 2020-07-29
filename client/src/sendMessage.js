@@ -4,14 +4,14 @@ export default class SendMessage extends Component {
   state = {
     text: {
       recipient: '',
-      textmessage: '',
+      textMessage: '',
     },
   };
 
   sendText = () => {
     const { text } = this.state;
     fetch(
-      `/send-text?recipient=${text.recipient}&textmessage=${text.textmessage}`,
+      `/send-text?recipient=${text.recipient}&textMessage=${text.textMessage}`,
     ).catch(err => console.error(err));
   };
 
@@ -35,9 +35,9 @@ export default class SendMessage extends Component {
           <br />
           <textarea
             rows={3}
-            value={text.textmessage}
+            value={text.textMessage}
             onChange={e =>
-              this.setState({ text: { ...text, textmessage: e.target.value } })
+              this.setState({ text: { ...text, textMessage: e.target.value } })
             }
           />
           <div />

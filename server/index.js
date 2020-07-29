@@ -20,11 +20,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/send-text', (req, res) => {
-  const { recipient, textmessage } = req.query;
-
+  const { recipient, textMessage } = req.query;
+    console.log(recipient)
+    console.log(textMessage)
   twilioClient.messages
     .create({
-      body: textmessage,
+      body: textMessage,
       to: '+1' + recipient,
       from: process.env.TWILIO_PHONE_NUMBER,
     })
